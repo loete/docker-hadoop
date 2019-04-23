@@ -6,6 +6,13 @@ RUN apt-get update && \
     apt-get install -y ssh rsync vim openjdk-8-jdk-headless && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+# ssh
+RUN mkdir -p /root/.ssh
+ADD id_rsa /root/.ssh/id_rsa
+ADD id_rsa.pub /root/.ssh/id_rsa.pub
+ADD id_rsa.pub /root/.ssh/authorized_keys
+ADD ssh_config /root/.ssh/config
+RUN chmod 600 /root/.ssh/config && chown root:root /root/.ssh/config
 # env vars
 ENV HADOOP_HOME /opt/hadoop
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
@@ -34,5 +41,7 @@ EXPOSE 19888
 EXPOSE 8030 8031 8032 8033 8040 8042 8088 10020 
 # Datanode ports
 EXPOSE 9867 9866 9865 9864 
+# QJournal
+EXPOSE 8485
 # Other ports
 EXPOSE 22 2122 49707
