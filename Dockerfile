@@ -30,7 +30,7 @@ RUN \
   rm -rf ${HADOOP_HOME}/share/doc && \
   echo "export JAVA_HOME=$JAVA_HOME" >> ${HADOOP_HOME}/etc/hadoop/hadoop-env.sh && \
   echo "PATH=$PATH:$JAVA_HOME/bin:$HADOOP_HOME/bin" >> ~/.bashrc
-# rm tar.gz and hadoop doc 
+# rm tar.gz
 RUN rm -rf /hadoop-$HADOOP_VERSION.tar.gz
 # create data
 VOLUME /hdfs/volume1
