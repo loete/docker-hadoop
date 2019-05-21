@@ -1,9 +1,9 @@
-FROM ubuntu:18.04
+FROM openjdk:8u212-jdk-slim-stretch
 # Hadoop Version
 ARG HADOOP_VERSION=3.2.0
 # install
 RUN apt-get update && \
-    apt-get install -y ssh rsync vim openjdk-8-jdk-headless && \
+    apt-get install -y wget ssh && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 # ssh
@@ -27,21 +27,20 @@ RUN \
   wget http://apache.mirrors.tds.net/hadoop/common/hadoop-$HADOOP_VERSION/hadoop-$HADOOP_VERSION.tar.gz && \
   tar -xzf hadoop-$HADOOP_VERSION.tar.gz && \
   mv hadoop-$HADOOP_VERSION $HADOOP_HOME && \
+  rm -rf ${HADOOP_HOME}/share/doc && \
   echo "export JAVA_HOME=$JAVA_HOME" >> ${HADOOP_HOME}/etc/hadoop/hadoop-env.sh && \
   echo "PATH=$PATH:$JAVA_HOME/bin:$HADOOP_HOME/bin" >> ~/.bashrc
-# rm tar.gz
+# rm tar.gz and hadoop doc 
 RUN rm -rf /hadoop-$HADOOP_VERSION.tar.gz
 # create data
 VOLUME /hdfs/volume1
 # Hdfs ports
 EXPOSE 50010 50020 50070 50075 50090 8020 9000
-# Mapred ports
-EXPOSE 19888
-# Yarn ports
-EXPOSE 8030 8031 8032 8033 8040 8042 8088 10020 
+# Yarn                                          Mapred
+EXPOSE 8030 8031 8032 8033 8040 8042 8088 10020 19888
 # Datanode ports
 EXPOSE 9867 9866 9865 9864 
-# QJournal
+# Journal Node
 EXPOSE 8485
 # Other ports
 EXPOSE 22 2122 49707
