@@ -1,9 +1,10 @@
+# base image
 FROM openjdk:8u212-jdk-slim-stretch
 # Hadoop Version
 ARG HADOOP_VERSION=3.2.0
 # install
 RUN apt-get update && \
-    apt-get install -y wget ssh && \
+    apt-get install -y ssh wget && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 # ssh
@@ -41,6 +42,6 @@ EXPOSE 8030 8031 8032 8033 8040 8042 8088 10020 19888
 # Datanode ports
 EXPOSE 9867 9866 9865 9864 
 # Journal Node
-EXPOSE 8485
+EXPOSE 8485 8481 8480
 # Other ports
 EXPOSE 22 2122 49707
