@@ -32,5 +32,13 @@ RUN apt-get update && \
     rm -rf /hadoop-$HADOOP_VERSION.tar.gz /var/lib/apt/lists/* /tmp/* /var/tmp/*
 # create data
 VOLUME /hdfs/volume1
-# Hdfs ports                              Yarn                                          Mapred Datanode            Journal        misc
-EXPOSE 50010 50020 50070 50075 50090 8020 9000 8030 8031 8032 8033 8040 8042 8088 10020 19888  9867 9866 9865 9864 8485 8481 8480 22 2122 49707
+# Hdfs ports                                                                        
+EXPOSE 50010 50020 50070 50075 50090 8020 9000 9870
+# YARN                                          Mapred
+EXPOSE 8030 8031 8032 8033 8040 8042 8088 10020 19888  
+# datanode
+EXPOSE 9867 9866 9865 9864 
+# journal ports
+EXPOSE 8485 8481 8480 
+# misc ports
+EXPOSE 22 2122 49707
