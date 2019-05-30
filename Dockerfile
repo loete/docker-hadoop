@@ -19,7 +19,7 @@ COPY id_rsa.pub /root/.ssh/authorized_keys
 COPY ssh_config /root/.ssh/config
 # install
 RUN apt-get update && \
-    apt-get install -y ssh wget && \
+    apt-get install -y ssh wget curl && \
     apt-get clean && \
     mkdir -p /root/.ssh && \
     chmod 600 /root/.ssh/config && chown root:root /root/.ssh/config && \
