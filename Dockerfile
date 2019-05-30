@@ -23,10 +23,12 @@ RUN apt-get update && \
     apt-get clean && \
     mkdir -p /root/.ssh && \
     chmod 600 /root/.ssh/config && chown root:root /root/.ssh/config && \
+    chmod 400 /root/.ssh/id_rsa && \
     wget http://apache.mirrors.tds.net/hadoop/common/hadoop-$HADOOP_VERSION/hadoop-$HADOOP_VERSION.tar.gz && \
     tar -xzf hadoop-$HADOOP_VERSION.tar.gz && \
     mv hadoop-$HADOOP_VERSION $HADOOP_HOME && \
     rm -rf ${HADOOP_HOME}/share/doc && \
+    mkdir ${HADOOP_HOME}/logs && \
     echo "export JAVA_HOME=$JAVA_HOME" >> ${HADOOP_HOME}/etc/hadoop/hadoop-env.sh && \
     echo "PATH=$PATH:$JAVA_HOME/bin:$HADOOP_HOME/bin" >> ~/.bashrc && \
     rm -rf /hadoop-$HADOOP_VERSION.tar.gz /var/lib/apt/lists/* /tmp/* /var/tmp/*
