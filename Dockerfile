@@ -11,7 +11,8 @@ ENV \
   HADOOP_MAPRED_HOME=/opt/hadoop \
   HADOOP_YARN_HOME=/opt/hadoop \
   HADOOP_CONF_DIR=/opt/hadoop/etc/hadoop \
-  YARN_CONF_DIR=/opt/hadoop/etc/hadoop
+  YARN_CONF_DIR=/opt/hadoop/etc/hadoop \
+  YARN_HOME=/opt/hadoop
 # ssh 
 COPY id_rsa /root/.ssh/id_rsa
 COPY id_rsa.pub /root/.ssh/id_rsa.pub
